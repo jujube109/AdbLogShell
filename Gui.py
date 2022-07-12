@@ -47,9 +47,7 @@ class get_port:
     def close_window(self):
         messagebox.showwarning('提示', '连接失败，端口号错误或未找到')
         self.root_window.quit()
-# if __name__ == '__main__':
-#     a=get_port()
-#     print(a.input_key())
+
 
 
 

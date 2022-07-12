@@ -23,13 +23,14 @@ class AdbShell:
         
         也可以直接使用communicate
         '''
-        yjt_pid=bytes()
+        pack_pid=str()
         #先判断flag是否为真，连接是否成功
         if flag:
-            cmd_yjt=subprocess.Popen("adb -s 127.0.0.1:62025 shell top -n 1| grep yjt",stdin = subprocess.PIPE,stdout=subprocess.PIPE)
-            yjt_top_byte=cmd_yjt.communicate()
-            yjt_top_str=str(yjt_top_byte)
-            yjt_pid = yjt_top_str.split(" ")[1]
+            cmd=subprocess.Popen("adb -s 127.0.0.1:62025 shell top -n 1| grep xx",stdin = subprocess.PIPE,stdout=subprocess.PIPE)
+            top_byte=cmd.communicate()
+            top_str=str(top_byte)
+            pack_pid = top_str.split(" ")[1]
+            print(pack_pid)
             # time.sleep(1)
             # for line in cmd_yjt.stdout:
             #     yjt_pid=line
@@ -46,7 +47,7 @@ class AdbShell:
         # yjt_pid=yjt_top_str.split(" ")[1]
 
 
-        log_command=f"adb -s 127.0.0.1:62025 logcat --pid={yjt_pid}"
+        log_command=f"adb -s 127.0.0.1:62025 logcat --pid={pack_pid}"
         #if yjt_pid:
         cmd_yjt_log = subprocess.Popen(log_command,stdout = subprocess.PIPE)
         #只要日志命令没有终止，就循环打印出没行新增的日志信息
@@ -61,6 +62,6 @@ class AdbShell:
         except  KeyboardInterrupt:
             exit(0)
 
-# if __name__ == '__main__':
-#     a=AdbShell()
-#     a.execute_cmd()
+if __name__ == '__main__':
+    a=AdbShell()
+    a.execute_cmd()
