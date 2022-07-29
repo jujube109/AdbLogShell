@@ -26,7 +26,7 @@ class GuiGet:
         ip_initial = tk.StringVar()
         ip_initial.set("127.0.0.1")
         self.port_input = tk.Entry(self.root_window, textvariable=port_initial)
-        self.port_input.grid(row=0, column=2, padx=10, pady=5, )
+        self.port_input.grid(row=0, column=2, padx=10, pady=5 )
         self.ip_input = tk.Entry(self.root_window, textvariable=ip_initial)
         self.ip_input.grid(row=1, column=2, padx=10, pady=5, )
         self.cbox = ttk.Combobox(self.root_window)
@@ -49,7 +49,7 @@ class GuiGet:
             return False
 
 '''
-
+    #adb connect链接成功后显示“连接成功”字样
     def show_pack(self):
         if self.__connectFlag:
             suceeStr = tk.StringVar()
@@ -96,7 +96,7 @@ class GuiGet:
 
             log_command = f"adb -s {self.__address} logcat --pid={self.__pack_pid}"
             print(log_command)
-            if self.__pack_pid==None:
+            if "None" in self.__pack_pid :
                 messagebox.showinfo('提示', "找不到所选的包或软件包未运行")
                 self.cbox.delete(0, tk.END)
             cmd_yjt_log = subprocess.Popen(log_command, stdout=subprocess.PIPE)
