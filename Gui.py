@@ -129,11 +129,13 @@ class GuiGet:
         # button.bind("<Button-1>",show_pack,add="+")
 
         # 将gui窗口获取到的端口号与adb命令拼接
-        self.__IPport["ip"] = self.ip_input.get()
-        self.__IPport["port"] = self.port_input.get()
-        self.__address = self.__IPport["ip"] + ":" + self.__IPport["port"]
+
+        print(self.__IPport)
 
         def adb__connect_exece(event):
+            self.__IPport["ip"] = self.ip_input.get()
+            self.__IPport["port"] = self.port_input.get()
+            self.__address = self.__IPport["ip"] + ":" + self.__IPport["port"]
             connect_str = "adb connect " + self.__address
             try:
                 cmd_connect = subprocess.getoutput(connect_str)
